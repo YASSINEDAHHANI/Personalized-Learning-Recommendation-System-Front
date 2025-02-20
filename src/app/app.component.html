@@ -1,0 +1,32 @@
+<app-navbar></app-navbar>
+<router-outlet></router-outlet>
+
+<!-- Sidebar (Visible unless on login or signup page) 
+<div class="flex min-h-screen">
+  <div id="hs-application-sidebar" 
+    *ngIf="!router.url.includes('login') && !router.url.includes('signup')"
+    class="hs-overlay [--auto-close:lg] hs-overlay-open:translate-x-0 
+    -translate-x-full transition-all duration-300 transform 
+    w-[260px] h-full hidden fixed inset-y-0 start-0 z-[60] 
+    bg-white border-e border-gray-200 
+    lg:block lg:translate-x-0 lg:end-auto lg:bottom-0 
+    dark:bg-neutral-800 dark:border-neutral-700" 
+    role="dialog" tabindex="-1" aria-label="Sidebar">
+
+    <div class="relative flex flex-col h-full max-h-full">
+      <div class="p-4 text-xl font-semibold text-gray-800 dark:text-white">
+        Sidebar Content
+      </div>
+
+      <ul class="space-y-4 text-gray-700 dark:text-gray-200">
+        <li><a routerLink="/recommendation">Recommendation</a></li>
+        <li><a href="#">Requests</a></li>
+        <li><a href="#">Settings</a></li>
+        <li><a class="transition-colors" routerLink="/logout"(click)="logout()" routerLinkActive="active" style="cursor: pointer;">Logout</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="flex-1 p-4 lg:ml-[260px]">
+    <router-outlet></router-outlet>
+  </div>-->
