@@ -34,24 +34,31 @@
     <table class="recommendation-table">
       <thead>
         <tr>
+          <th>ID</th>
           <th>Title</th>
           <th>Level</th>
           <th>Final Score</th>
           <th>Numeric Ratings</th>
           <th>Review Counts</th>
           <th>Skills</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let course of recommendations">
+          <td>{{ course.id }}</td>
           <td>{{ course.Title }}</td>
           <td>{{ course.Level }}</td>
           <td>{{ course.Final_Score | number:'1.2-2' }}</td>
           <td>{{ course['Numeric Ratings'] }}</td>
           <td>{{ course['Review counts'] }}</td>
           <td>{{ course.Skills }}</td>
+          <td>
+            <button class="btn-enroll" (click)="enroll(course.id)">Enroll</button>
+          </td>
         </tr>
       </tbody>
+
     </table>
   </div>
 

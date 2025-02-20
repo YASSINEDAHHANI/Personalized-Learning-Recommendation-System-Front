@@ -10,14 +10,14 @@ export class UserService {
   constructor(private http:HttpClient) { }
 
   savePreferences(preferences:any):Observable<any>{
-    return this.http.post(`${this.apiUrl}/preferences`, preferences);
+    return this.http.post(`${this.apiUrl}/preferences/2`, preferences);
   }
 
   // getCourseRecommendations(preferences: any): Observable<string> {
   //   return this.http.post<string>(`${this.apiUrl}/courses`, preferences);
   // }
   getCourseRecommendations(preferences: { level: string; skills: string[] }): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/courses`, preferences);
+    return this.http.post<any>(`${this.apiUrl}/courses/2`, preferences);
   }
 
   getAllCourses(): Observable<any[]> {

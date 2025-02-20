@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UserService } from '../../services/user.service';
+import { StorageService } from '../../../../auth/services/storage/storage.service';
+import { EnrollService } from '../../../../service/enroll.service';
 
 @Component({
   selector: 'app-recommendation',
@@ -10,11 +12,14 @@ import { UserService } from '../../services/user.service';
   styleUrl: './recommendation.component.scss'
 })
 export class RecommendationComponent implements OnInit {
+    Enroll(arg0: any) {
+    throw new Error('Method not implemented.');
+    }
   preferences = { level: '', skills: '' }; // 'skills' is a comma-separated string
   recommendations: any[] = [];
   errorMessage: string = '';
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService,private storageService:StorageService,private enrollService:EnrollService) {}
 
   ngOnInit(): void {}
 
@@ -33,4 +38,25 @@ export class RecommendationComponent implements OnInit {
       error: (err) => (this.errorMessage = `Error: ${err.message}`),
     });
   }
+  userId: number = 2;
+  enroll(courseId: number | undefined): void {
+    if (!courseId) {
+      console.error('Error: Course ID is undefined!');
+      alert('Error: Unable to enroll. Course ID is missing.');
+      return;
+    }
+  
+    console.log('Enrolling in Course:', courseId, 'for User:', this.userId);
+  
+    this.enrollService.enrollInCourse(courseId, this.userId).subscribe({
+      next: () => {
+        alert('Successfully Enrolled!');
+      },
+      error: (err) => {
+        console.error('Enrollment Error:', err);
+        alert('Enrollment failed. Check console for details.');
+      }
+    });
+  }
+  
 }
