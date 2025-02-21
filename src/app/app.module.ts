@@ -13,6 +13,10 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { HomeComponent } from "./Home/components/home/home.component";
 import { NavbarComponent } from "./Home/components/navbar/navbar.component";
+import { EnrollCourseComponent } from "./Home/components/enroll-course/enroll-course.component";
+import { CompletedCoursesComponent } from "./Home/components/completed-courses/completed-courses.component";
+import { AdminDashboardComponent } from "./modules/admin/component/admin-dashboard/admin-dashboard.component";
+import { ProfileComponent } from "./auth/components/profile/profile.component";
 
 
 @NgModule({
@@ -21,6 +25,7 @@ import { NavbarComponent } from "./Home/components/navbar/navbar.component";
         // LoginComponent,
         // SignupComponent,
         // RecommendationComponent
+        
     ],
     imports: [
         BrowserModule,
@@ -36,7 +41,11 @@ import { NavbarComponent } from "./Home/components/navbar/navbar.component";
         SignupComponent,
         RecommendationComponent,
         HomeComponent,
-        NavbarComponent
+        NavbarComponent,
+        EnrollCourseComponent,
+        CompletedCoursesComponent,
+        AdminDashboardComponent,
+        ProfileComponent
         
 
     ],

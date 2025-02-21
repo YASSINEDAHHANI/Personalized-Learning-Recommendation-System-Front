@@ -1,1 +1,37 @@
-<p>enroll-course works!</p>
+<div class="container">
+    <h2>My Enrolled Courses</h2>
+  
+    <!-- Search Bar -->
+    <input type="text" [(ngModel)]="searchTitle" (keyup)="searchCourses()" placeholder="Search courses..." class="form-control mb-3"/>
+  
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Title</th>
+          <th>Level</th>
+          <th>Ratings</th>
+          <th>Reviews</th>
+          <th>Progress</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let course of enrolledCourses; index as i">
+          <td>{{ i + 1 }}</td>
+          <td>{{ course.title }}</td>
+          <td>{{ course.level }}</td>
+          <td>{{ course.numericRatings }}</td>
+          <td>{{ course.reviewCounts }}</td>
+          <td>{{ course.progress }}%</td>
+          <td>
+            <button class="btn btn-success btn-sm" (click)="updateProgress(course.id, course.progress)">+10%</button>
+            <button class="btn btn-danger btn-sm" (click)="deleteCourse(course.id)">Remove</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <p *ngIf="enrolledCourses.length === 0">No courses enrolled yet.</p>
+  </div>
+  

@@ -1,15 +1,21 @@
 import { Component } from '@angular/core';
 import { EnrollService } from '../../../service/enroll.service';
+import { StorageService } from '../../../auth/services/storage/storage.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-enroll-course',
-  imports: [],
+  imports: [CommonModule, FormsModule,RouterModule],
   templateUrl: './enroll-course.component.html',
   styleUrl: './enroll-course.component.scss'
 })
 export class EnrollCourseComponent {
   enrolledCourses: any[] = [];
-  userId: number = 1; // Example user ID, replace with dynamic user data
+  userId: any = StorageService.getUserId();
+  searchTitle: string = '';
+  filteredCourses: any[] = [];
 
   constructor(private enrollService: EnrollService) {}
 
@@ -22,19 +28,44 @@ export class EnrollCourseComponent {
       this.enrolledCourses = data;
     });
   }
+  filterCourses(): void {
+    this.filteredCourses = this.searchTitle.trim()
+      ? this.enrolledCourses.filter(course =>
+          course.title.toLowerCase().includes(this.searchTitle.toLowerCase())
+        )
+      : this.enrolledCourses;
+  }
 
-  enroll(courseId: number): void {
-    this.enrollService.enrollInCourse(courseId, this.userId).subscribe(() => {
-      alert('Enrolled successfully!');
-      this.loadEnrolledCourses(); // Refresh the list
+  searchCourses(): void {
+    if (this.searchTitle.trim() === '') {
+      this.loadEnrolledCourses();
+      return;
+    }
+
+    this.enrollService.searchEnrolledCourses(this.searchTitle).subscribe({
+      next: (data) => (this.enrolledCourses = data),
+      error: (error) => console.error('Error searching courses', error)
     });
   }
 
+  deleteCourse(courseId: number): void {
+    if (confirm('Are you sure you want to remove this course?')) {
+      this.enrollService.deleteEnrolledCourse(courseId).subscribe({
+        next: () => {
+          alert('Course removed successfully!');
+          this.loadEnrolledCourses();
+        },
+        error: (error) => console.error('Error deleting course', error)
+      });
+    }
+  }
+
   updateProgress(courseId: number, currentProgress: number): void {
-    const newProgress = Math.min(100, currentProgress + 10); // Increase by 10%, max 100%
-    this.enrollService.updateProgress(courseId, newProgress).subscribe(() => {
-      alert(`Progress updated to ${newProgress}%`);
-      this.loadEnrolledCourses();
+    this.enrollService.updateProgress(courseId, currentProgress).subscribe({
+      next: () => {
+        this.loadEnrolledCourses();
+      },
+      error: (error) => console.error('Error updating progress', error)
     });
   }
 }

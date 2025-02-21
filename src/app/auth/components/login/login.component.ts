@@ -33,31 +33,28 @@ export class LoginComponent {
     event.preventDefault(); // Prevent form submission
     this.hidePassword = !this.hidePassword;
   }
-  onSubmit()
-  {
+  onSubmit() {
     console.log(this.loginForm.value);
-  this.authService.login(this.loginForm.value).subscribe((res) => {
-    console.log(res);
-    if(res.userId != null)
-    {
-      const user={
-        id: res.userId,
-        role: res.userRole
+    this.authService.login(this.loginForm.value).subscribe((res) => {
+      console.log(res);
+      if (res.userId != null) {
+        const user = {
+          id: res.userId,
+          role: res.userRole
+        };
+  
+        StorageService.saveUser(user);
+        StorageService.saveToken(res.jwt);
+  
+        if (StorageService.isAdminLoggedIn()) {
+          this.router.navigateByUrl("/home");
+        } else {
+          this.router.navigateByUrl("/home");
+        }
+  
+      } else {
+        this.snackbar.open("Invalid credentials", "Close", { duration: 5000, panelClass: "error-snackbar" });
       }
-      StorageService.saveUser(user);
-      StorageService.saveToken(res.jwt);
-
-      if(StorageService.isAdminLoggedIn())
-        this.router.navigateByUrl("/home");
-      else if(StorageService.isUserLoggedIn())
-        this.router.navigateByUrl("/home");
-
-      this.snackbar.open("Login successful","Close",{duration:5000});
-    }else
-    {
-      this.snackbar.open("Invalid credentials","Close",{duration: 5000,panelClass:"error-snackbar"});
-
-    }
-  })
+    });
   }
 }

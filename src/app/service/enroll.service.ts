@@ -10,15 +10,28 @@ export class EnrollService{
 
   constructor(private http: HttpClient) {}
 
-  enrollInCourse(courseId: number, userId: number): Observable<any> {
-    return this.http.post(`${this.apiUrl}/enroll?courseId=${courseId}&userId=${userId}`, {});
+  enrollInCourse(Title:any, userId: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/enroll?title=${Title}&userId=${userId}`, {});
   }
 
   getEnrolledCourses(userId: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/user/${userId}`);
   }
 
-  updateProgress(courseId: number, progress: number): Observable<void> {
-    return this.http.patch<void>(`${this.apiUrl}/${courseId}/progress?progress=${progress}`, {});
+  deleteEnrolledCourse(courseId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${courseId}`);
   }
+
+  searchEnrolledCourses(title: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/search?title=${title}`);
+  }
+
+  updateProgress(courseId: number, currentProgress: number): Observable<void> {
+    const newProgress = Math.min(100, currentProgress + 10); // Increase by 10%, max 100%
+    return this.http.patch<void>(`${this.apiUrl}/${courseId}/progress?progress=${newProgress}`, {});
+  }
+  getCompletedCourses(userId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/user/completed/${userId}`);
+  }
+  
 }

@@ -1,0 +1,17 @@
+<div class="container">
+    <h2>User Profile</h2>
+  
+    <div class="profile-section">
+      <label><strong>Username:</strong></label>
+      <input type="text" [(ngModel)]="updatedUser.username">
+  
+      <label><strong>Email:</strong></label>
+      <input type="email" [(ngModel)]="updatedUser.email">
+  
+      <label><strong>New Password:</strong></label>
+      <input type="password" [(ngModel)]="updatedUser.password" placeholder="Leave blank if not changing">
+  
+      <button (click)="updateUser()">Update Profile</button>
+    </div>
+  </div>
+  

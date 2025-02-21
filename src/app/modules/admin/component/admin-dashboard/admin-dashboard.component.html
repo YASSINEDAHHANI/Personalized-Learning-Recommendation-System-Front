@@ -1,0 +1,55 @@
+<h2 class="admin-title">Admin Panel - Users and Enrolled Courses</h2>
+
+<!-- Search Bar -->
+<div class="search-container">
+  <input type="text" [(ngModel)]="searchQuery" placeholder="Search Users..." class="search-input" />
+  <button (click)="searchUsers()" class="search-button">Search</button>
+</div>
+
+<!-- User & Enrolled Courses Table -->
+<table class="admin-table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Enrolled Courses</th>
+      <th>Progress</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+    <td>{{ user.userDto?.username }}</td>
+      <td>{{ user.email }}</td>
+      <td>
+        <div *ngIf="userEnrolledCourses[user.id].length > 0; else noCourses">
+          <ul class="course-list">
+            <li *ngFor="let course of userEnrolledCourses[user.id]" class="course-item">
+              <span class="course-title">{{ course.title }}</span> 
+              <span class="course-level">({{ course.level }})</span> 
+            </li>
+          </ul>
+        </div>
+        <ng-template #noCourses>
+          <p class="no-courses-text">No enrolled courses</p>
+        </ng-template>
+      </td>
+      <td>
+        <div *ngIf="userEnrolledCourses[user.id].length > 0; else noProgress">
+          <ul class="progress-list">
+            <li *ngFor="let course of userEnrolledCourses[user.id]" class="progress-item">
+              <div class="progress-container">
+                <span class="progress-text">{{ course.progress }}%</span>
+                <div class="progress-bar">
+                  <div class="progress-fill" [style.width.%]="course.progress"></div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <ng-template #noProgress>
+          <p class="no-courses-text">-</p>
+        </ng-template>
+      </td>
+    </tr>
+  </tbody>
+</table>

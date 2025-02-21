@@ -11,8 +11,18 @@
         name="level"
         required
         placeholder="Enter your level (e.g., Beginner, Intermediate, Advanced)"
+        (focus)="showDropdown = true"
+        (blur)="hideDropdownWithDelay()"
+        (input)="filterLevels()"
       />
+      <ul *ngIf="showDropdown" class="dropdown-list">
+        <li *ngFor="let level of filteredLevels" (click)="selectLevel(level)">
+          {{ level }}
+        </li>
+      </ul>
     </div>
+    
+    
 
     <div class="form-group">
       <label for="skills">Skills (comma-separated):</label>
@@ -34,7 +44,6 @@
     <table class="recommendation-table">
       <thead>
         <tr>
-          <th>ID</th>
           <th>Title</th>
           <th>Level</th>
           <th>Final Score</th>
@@ -46,7 +55,6 @@
       </thead>
       <tbody>
         <tr *ngFor="let course of recommendations">
-          <td>{{ course.id }}</td>
           <td>{{ course.Title }}</td>
           <td>{{ course.Level }}</td>
           <td>{{ course.Final_Score | number:'1.2-2' }}</td>
@@ -54,7 +62,7 @@
           <td>{{ course['Review counts'] }}</td>
           <td>{{ course.Skills }}</td>
           <td>
-            <button class="btn-enroll" (click)="enroll(course.id)">Enroll</button>
+            <button class="btn-enroll" (click)="enroll(course.Title)">Enroll</button>
           </td>
         </tr>
       </tbody>

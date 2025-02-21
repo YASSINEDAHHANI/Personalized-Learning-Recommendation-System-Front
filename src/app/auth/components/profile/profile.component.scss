@@ -1,0 +1,79 @@
+.container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .profile-section, .preferences-section {
+    margin-bottom: 20px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  .preferences-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .preferences-table th, .preferences-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .skills-container {
+    margin-top: 20px;
+  }
+  
+  .skills-container ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .skills-container li {
+    background: #f8f9fa;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .skills-container button {
+    background-color: red;
+  }
+  
+  .add-skill-section {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .add-skill-section input {
+    flex: 1;
+  }
+  
+  .add-skill-section button {
+    background-color: green;
+  }
+  

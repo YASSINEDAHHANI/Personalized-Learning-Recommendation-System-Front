@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { StorageService } from '../../../../auth/services/storage/storage.service';
 import { EnrollService } from '../../../../service/enroll.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recommendation',
@@ -18,10 +19,31 @@ export class RecommendationComponent implements OnInit {
   preferences = { level: '', skills: '' }; // 'skills' is a comma-separated string
   recommendations: any[] = [];
   errorMessage: string = '';
+  showDropdown = false;
+  levels = ['Beginner', 'Intermediate', 'Advanced'];
+  filteredLevels = [...this.levels];
 
-  constructor(private userService: UserService,private storageService:StorageService,private enrollService:EnrollService) {}
+  constructor(private userService: UserService,private storageService:StorageService,private enrollService:EnrollService,
+    private router:Router
+  ) {}
 
   ngOnInit(): void {}
+  filterLevels() {
+    this.filteredLevels = this.levels.filter(level =>
+      level.toLowerCase().includes(this.preferences.level.toLowerCase())
+    );
+  }
+
+  selectLevel(level: string) {
+    this.preferences.level = level;
+    this.showDropdown = false;
+  }
+
+  hideDropdownWithDelay() {
+    setTimeout(() => {
+      this.showDropdown = false;
+    }, 200); // Delay to allow click event to be captured
+  }
 
   submitPreferences(): void {
     const formattedPreferences = {
@@ -29,7 +51,7 @@ export class RecommendationComponent implements OnInit {
       skills: this.preferences.skills.split(',').map(skill => skill.trim()), // Convert string to array
     };
 
-    this.userService.getCourseRecommendations(formattedPreferences).subscribe({
+    this.userService.getCourseRecommendations(formattedPreferences,StorageService.getUserId()).subscribe({
       next: (data) => {
         this.recommendations = data.sort(
           (a: any, b: any) => b.Final_Score - a.Final_Score
@@ -38,23 +60,12 @@ export class RecommendationComponent implements OnInit {
       error: (err) => (this.errorMessage = `Error: ${err.message}`),
     });
   }
-  userId: number = 2;
-  enroll(courseId: number | undefined): void {
-    if (!courseId) {
-      console.error('Error: Course ID is undefined!');
-      alert('Error: Unable to enroll. Course ID is missing.');
-      return;
-    }
   
-    console.log('Enrolling in Course:', courseId, 'for User:', this.userId);
-  
-    this.enrollService.enrollInCourse(courseId, this.userId).subscribe({
+  enroll(Title: String): void {
+    this.enrollService.enrollInCourse(Title, StorageService.getUserId()).subscribe({
       next: () => {
         alert('Successfully Enrolled!');
-      },
-      error: (err) => {
-        console.error('Enrollment Error:', err);
-        alert('Enrollment failed. Check console for details.');
+        this.router.navigate(['/enrollments']);
       }
     });
   }
