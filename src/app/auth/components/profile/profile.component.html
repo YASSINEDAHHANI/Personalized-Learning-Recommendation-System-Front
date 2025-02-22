@@ -1,17 +1,16 @@
-<div class="container">
-    <h2>User Profile</h2>
-  
-    <div class="profile-section">
-      <label><strong>Username:</strong></label>
-      <input type="text" [(ngModel)]="updatedUser.username">
-  
-      <label><strong>Email:</strong></label>
-      <input type="email" [(ngModel)]="updatedUser.email">
-  
-      <label><strong>New Password:</strong></label>
-      <input type="password" [(ngModel)]="updatedUser.password" placeholder="Leave blank if not changing">
-  
-      <button (click)="updateUser()">Update Profile</button>
-    </div>
+<div class="profile-container">
+  <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">User Profile</h2>
+
+  <div class="profile-section space-y-4">
+    <label for="username" class="block text-gray-700 font-medium">Username:</label>
+    <input id="username" type="text" [(ngModel)]="updatedUser.username" class="input-field" autocomplete="off"  placeholder="Enter your username">
+
+    <label for="email" class="block text-gray-700 font-medium">Email:</label>
+    <input id="email" type="email" [(ngModel)]="updatedUser.email" class="input-field" autocomplete="off"  placeholder="Enter your email">
+
+    <label for="password" class="block text-gray-700 font-medium">New Password:</label>
+    <input id="password" type="password" [(ngModel)]="updatedUser.password" autocomplete="off"  class="input-field" placeholder="Leave blank if not changing">
+
+    <button class="btn-update" (click)="updateUser()">Update Profile</button>
   </div>
-  
+</div>

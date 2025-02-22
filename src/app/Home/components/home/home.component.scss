@@ -4,6 +4,7 @@ body{
 	font-weight: 400;
 	font-size:14px;
 	color:#888;
+	
 }
 .pro-features {
 	position: fixed;
@@ -190,6 +191,11 @@ body{
 	End Global CSS 
 ===============================*/
 
+.small-icon {
+    width: 60%; /* Adjust the percentage as needed */
+    height: auto;
+	margin: auto;
+}
 
 
 /*===========================
@@ -510,9 +516,10 @@ body{
 	padding:120px 0;
 }
 .fun-facts{
-	background:url('../../../../sets/img/fun-bg.jpg');
+	background:url('../../../../assets/img/3azi.png');
 	background-size:cover;
-	background-repeat:no-repeat;
+	height: 500px;
+	margin-top: 25px;
 }
 .fun-facts .single-fun {
 	

@@ -14,6 +14,9 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './signup.component.scss'
 })
 export class SignupComponent {
+goToLogin() {
+  this.router.navigate(['/login']);
+}
   signupForm! : FormGroup;
   hidePassword = true;
   

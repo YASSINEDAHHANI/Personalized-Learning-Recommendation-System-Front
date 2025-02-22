@@ -69,5 +69,11 @@ export class RecommendationComponent implements OnInit {
       }
     });
   }
+  viewOnCoursera(courseTitle: string) {
+    const encodedTitle = encodeURIComponent(courseTitle); // Encode for URL safety
+    const courseraUrl = `https://www.coursera.org/search?query=${encodedTitle}`;
+    window.open(courseraUrl, "_blank"); // Open in a new tab
+  }
+  
   
 }

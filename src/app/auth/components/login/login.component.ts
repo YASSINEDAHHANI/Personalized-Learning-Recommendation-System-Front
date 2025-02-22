@@ -28,7 +28,10 @@ export class LoginComponent {
       password: [null, [Validators.required]],
     })
   }
-  
+
+  goToSignup() {
+    this.router.navigate(['/signup']);
+  }
   togglePasswordVisibility(event: Event): void {
     event.preventDefault(); // Prevent form submission
     this.hidePassword = !this.hidePassword;

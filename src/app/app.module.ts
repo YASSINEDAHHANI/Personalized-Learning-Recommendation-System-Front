@@ -17,6 +17,7 @@ import { EnrollCourseComponent } from "./Home/components/enroll-course/enroll-co
 import { CompletedCoursesComponent } from "./Home/components/completed-courses/completed-courses.component";
 import { AdminDashboardComponent } from "./modules/admin/component/admin-dashboard/admin-dashboard.component";
 import { ProfileComponent } from "./auth/components/profile/profile.component";
+import { FooterComponent } from "./Home/components/footer/footer.component";
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { ProfileComponent } from "./auth/components/profile/profile.component";
         EnrollCourseComponent,
         CompletedCoursesComponent,
         AdminDashboardComponent,
-        ProfileComponent
+        ProfileComponent,
+        FooterComponent,
         
 
     ],

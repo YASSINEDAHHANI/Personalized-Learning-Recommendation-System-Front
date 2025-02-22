@@ -1,21 +1,20 @@
 <div class="completed-courses-container">
-    <h2>My Completed Courses</h2>
-  
-    <table *ngIf="completedCourses.length > 0" class="completed-courses-table">
+  <h2 class="section-title">My Completed Courses</h2>
+
+  <table *ngIf="completedCourses.length > 0" class="completed-courses-table">
       <thead>
-        <tr>
-          <th>Title</th>
-          <th>Level</th>
-        </tr>
+          <tr>
+              <th>Title</th>
+              <th>Level</th>
+          </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let course of completedCourses">
-          <td>{{ course.title }}</td>
-          <td>{{ course.level }}</td>
-        </tr>
+          <tr *ngFor="let course of completedCourses">
+              <td>{{ course.title }}</td>
+              <td>{{ course.level }}</td>
+          </tr>
       </tbody>
-    </table>
-  
-    <p *ngIf="completedCourses.length === 0">No completed courses found.</p>
-  </div>
-  
+  </table>
+
+  <p *ngIf="completedCourses.length === 0" class="empty-message">No completed courses found.</p>
+</div>

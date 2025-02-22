@@ -1,30 +1,35 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+// Container
 .completed-courses-container {
-    max-width: 900px;
-    margin: 20px auto;
-    padding: 20px;
-    background: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .completed-courses-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .completed-courses-table th,
-  .completed-courses-table td {
-    padding: 10px;
-    border: 1px solid #ddd;
-    text-align: center;
-  }
-  
-  .completed-courses-table th {
-    background: #007bff;
-    color: white;
-  }
-  
-  .completed-courses-table tr:nth-child(even) {
-    background: #f2f2f2;
-  }
-  
+  @apply w-4/5 mx-auto bg-white shadow-lg rounded-lg p-8 mt-10;
+}
+
+// Title
+.section-title {
+  @apply text-2xl font-semibold text-gray-800 text-center mb-4;
+}
+
+// Table Styling
+.completed-courses-table {
+  @apply w-full border-collapse bg-white rounded-lg shadow;
+}
+
+.completed-courses-table th, .completed-courses-table td {
+  @apply px-4 py-3 border border-gray-300 text-center text-gray-700;
+}
+
+.completed-courses-table th {
+  @apply bg-blue-600 text-white font-semibold;
+}
+
+.completed-courses-table tr:nth-child(even) {
+  @apply bg-gray-200;
+}
+
+// Empty Message
+.empty-message {
+  @apply text-gray-500 text-lg text-center mt-4;
+}

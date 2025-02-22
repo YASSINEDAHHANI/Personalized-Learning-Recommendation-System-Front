@@ -1,127 +1,59 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+// Container Styling
 .recommendation-container {
-  max-width: 1600px;
-  margin: 40px auto;
-  padding: 20px;
-  background: #ffffff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  text-align: center;
-}
-.form-group {
-  position: relative;
+  @apply w-4/5 mx-auto bg-white shadow-lg rounded-lg p-8 mt-10;
 }
 
+// Labels
+.form-label {
+  @apply block text-gray-700 font-medium mb-2;
+}
+
+// Input Fields
+.input-field {
+  @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition;
+}
+
+// Dropdown List
 .dropdown-list {
-  position: absolute;
-  width: 100%;
-  background: white;
-  border: 1px solid #ddd;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  max-height: 150px;
-  overflow-y: auto;
-  z-index: 10;
+  @apply absolute z-10 w-full bg-white border border-gray-200 shadow-md rounded-lg mt-1;
 }
 
-.dropdown-list li {
-  padding: 10px;
-  cursor: pointer;
+.dropdown-item {
+  @apply px-4 py-2 cursor-pointer hover:bg-blue-100 transition;
 }
 
-.dropdown-list li:hover {
-  background-color: #f0f0f0;
-}
-
-
-h1 {
-  font-size: 28px;
-  color: #333;
-  margin-bottom: 20px;
-}
-
-.recommendation-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  padding: 20px;
-  background: #f9f9f9;
-  border-radius: 8px;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-}
-
-label {
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-input {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-}
-
+// Submit Button
 .btn-submit {
-  padding: 10px 20px;
-  font-size: 16px;
-  background: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: 0.3s;
+  @apply w-full bg-blue-600 text-white py-3 rounded-lg font-semibold text-lg mt-4 hover:bg-blue-700 transition;
 }
 
-.btn-submit:hover {
-  background: #0056b3;
-}
-
-.recommendations {
-  margin-top: 30px;
-}
-
+// Recommendation Table
 .recommendation-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
-
-.recommendation-table th,
-.recommendation-table td {
-  padding: 10px;
-  border: 1px solid #ddd;
-  text-align: center;
+  @apply w-full border-collapse mt-4;
 }
 
 .recommendation-table th {
-  background: #007bff;
-  color: white;
+  @apply bg-gray-200 text-gray-700 px-4 py-2 text-left;
 }
 
-.recommendation-table tr:nth-child(even) {
-  background: #f2f2f2;
+.recommendation-table td {
+  @apply border px-4 py-2 text-gray-600;
 }
 
-.error-message {
-  color: red;
-  font-size: 16px;
-  margin-top: 20px;
-}
+// Enroll Button
 .btn-enroll {
-  background-color: #28a745;
-  color: white;
-  padding: 8px 12px;
-  border: none;
-  cursor: pointer;
-  transition: 0.3s;
+  @apply bg-green-600 text-white px-2 py-1 text-sm rounded-md hover:bg-green-700 transition;
+}
+.btn-view {
+  @apply bg-blue-600 text-white px-2 py-1 text-sm rounded-md hover:bg-blue-700 transition;
 }
 
-.btn-enroll:hover {
-  background-color: #218838;
+
+// Error Message
+.error-message {
+  @apply text-red-600 font-medium text-center mt-4;
 }

@@ -2,13 +2,63 @@
 @tailwind components;
 @tailwind utilities;
 
+body, html {
+    height: 100%; /* Ensure full height for body and html */
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
 
-/* Global Styles */
+.footer-basic {
+    background-color: #f8f9fa;
+    padding: 30px 0;
+    margin-top: 0;
+    margin-bottom: 15px; /* Push the footer to the bottom */
+    text-align: center;
+}
+
+footer {
+    font-size: 14px;
+}
+
+.social a {
+    color: #333;
+    margin: 0 10px;
+    font-size: 24px;
+}
+
+.list-inline {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.list-inline-item {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+.list-inline-item a {
+    text-decoration: none;
+    color: #333;
+}
+
+.copyright {
+    color: #777;
+    margin-top: 20px;
+}
+
+/* Flexbox adjustment to push footer to the bottom */
 html, body {
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Ensures full height for flexbox */
 }
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  color-scheme: black;
+
+.router-container {
+  flex: 1; /* Makes content take available space and pushes footer to the bottom */
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

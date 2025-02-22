@@ -1,4 +1,4 @@
-<header class="header">
+<header class="header" *ngIf="isLoggedIn()">
 	<!-- Header Inner -->
 	<div class="header-inner">
 	  <div class="container">
@@ -7,7 +7,9 @@
 			<div class="col-lg-3 col-md-3 col-12">
 			  <!-- Start Logo -->
 			  <div class="logo">
-				<a routerLink="/home"><!--</img src="assets/img/logo.png">--></a>
+				<a routerLink="/home">
+				  <img src="../../../../assets/img/logo.png" alt="Logo">
+				</a>
 			  </div>
 			  <!-- End Logo -->
 			  <div class="mobile-nav"></div>
@@ -18,26 +20,27 @@
 				<nav class="navigation">
 				  <ul class="nav menu">
 					<li routerLinkActive="active">
-					  <a routerLink="/home">Home <i class="icofont-rounded-down"></i></a>
+					  <a routerLink="/home" class="no-underline hover:text-blue-500">Home <i class="icofont-rounded-down"></i></a>
 					</li>
 					<li routerLinkActive="active">
-					  <a routerLink="/recommendation">Recommendation System<i class="icofont-rounded-down"></i></a>
+					  <a routerLink="/recommendation" class="no-underline hover:text-blue-500">Recommendation System<i class="icofont-rounded-down"></i></a>
 					</li>
 					<li routerLinkActive="active">
-						<a routerLink="/enrollments">Enrolled Courses<i class="icofont-rounded-down"></i></a>
+						<a style="cursor: pointer;" >My Courses<i class="icofont-rounded-down"></i></a>
 						<ul class="dropdown">
-							<li><a routerLink="/competedcourses">Completed courses</a></li>
+							<li><a routerLink="/enrollments"  class="no-underline hover:text-blue-500">Enrolled Courses</a></li>
+							<li><a routerLink="/competedcourses"  class="no-underline hover:text-blue-500">Completed courses</a></li>
 						  </ul>
-					  </li>
-					  <li *ngIf="isAdminLoggedIn()" routerLinkActive="active">
-						<a routerLink="/admin-dashboard">Administrateur<i class="icofont-rounded-down"></i></a>
-					  </li>
+					</li>
+					<li *ngIf="isAdminLoggedIn()" routerLinkActive="active">
+						<a routerLink="/admin-dashboard" class="no-underline hover:text-blue-500">Administrateur<i class="icofont-rounded-down"></i></a>
+					</li>
 					<li routerLinkActive="active">
-						<a routerLink="/profile">Profile<i class="icofont-rounded-down"></i></a>
+						<a routerLink="/profile" class="no-underline hover:text-blue-500">Profile<i class="icofont-rounded-down"></i></a>
 					</li>
 					<li routerLinkActive="active">
 						<a (click)="logout()" style="cursor: pointer;">Logout <i class="icofont-logout"></i></a>
-					  </li>
+					</li>
 				  </ul>
 				</nav>
 			  </div>
@@ -47,5 +50,4 @@
 		</div>
 	  </div>
 	</div>
-  </header>
-  
+</header>

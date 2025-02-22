@@ -1,79 +1,33 @@
-.container {
-    max-width: 600px;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+// Container Styling
+.profile-container {
+  @apply max-w-lg mx-auto bg-white shadow-lg rounded-lg p-8 mt-10;
+}
+
+// Input Field Styling
+.input-field {
+  @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition;
+}
+
+// Button Styling
+.btn-update {
+  @apply w-full bg-blue-600 text-white py-3 rounded-lg font-semibold text-lg mt-4 hover:bg-blue-700 transition;
+}
+
+// Responsive Adjustments
+@screen sm {
+  .profile-container {
+    @apply p-6;
   }
-  
-  .profile-section, .preferences-section {
-    margin-bottom: 20px;
+
+  .input-field {
+    @apply text-sm;
   }
-  
-  input {
-    width: 100%;
-    padding: 8px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+
+  .btn-update {
+    @apply text-sm py-2;
   }
-  
-  button {
-    background-color: #007bff;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  .preferences-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
-  .preferences-table th, .preferences-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-  }
-  
-  .skills-container {
-    margin-top: 20px;
-  }
-  
-  .skills-container ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .skills-container li {
-    background: #f8f9fa;
-    margin: 5px 0;
-    padding: 10px;
-    border-radius: 4px;
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .skills-container button {
-    background-color: red;
-  }
-  
-  .add-skill-section {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .add-skill-section input {
-    flex: 1;
-  }
-  
-  .add-skill-section button {
-    background-color: green;
-  }
-  
+}

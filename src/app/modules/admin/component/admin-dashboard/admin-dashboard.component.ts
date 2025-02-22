@@ -27,7 +27,7 @@ export class AdminDashboardComponent implements OnInit {
   loadUsersWithEnrolledCourses(): void {
     this.adminService.getAllUsers().subscribe({
       next: (users) => {
-        this.users = users;
+        this.users = users.filter(user => user.userDto?.username.toLowerCase() !== 'admin');////////////////////////
         users.forEach(user => {
           this.userEnrolledCourses[user.id] = [];
           this.loadEnrolledCourses(user.id);
@@ -71,4 +71,19 @@ export class AdminDashboardComponent implements OnInit {
       });
     }
   }
+
+
+  filterUsers(): void {
+    const query = this.searchQuery.trim().toLowerCase();
+  
+    if (query === '') {
+      this.loadUsersWithEnrolledCourses(); // Reload original data when search is empty
+    } else {
+      this.users = this.users.filter(user =>
+        user.userDto?.username.toLowerCase().includes(query) ||
+        user.email.toLowerCase().includes(query)
+      );
+    }
+  }
+  
 }

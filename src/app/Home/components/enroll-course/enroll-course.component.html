@@ -1,37 +1,57 @@
 <div class="container">
-    <h2>My Enrolled Courses</h2>
-  
-    <!-- Search Bar -->
-    <input type="text" [(ngModel)]="searchTitle" (keyup)="searchCourses()" placeholder="Search courses..." class="form-control mb-3"/>
-  
-    <table class="table">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Title</th>
-          <th>Level</th>
-          <th>Ratings</th>
-          <th>Reviews</th>
-          <th>Progress</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let course of enrolledCourses; index as i">
-          <td>{{ i + 1 }}</td>
-          <td>{{ course.title }}</td>
-          <td>{{ course.level }}</td>
-          <td>{{ course.numericRatings }}</td>
-          <td>{{ course.reviewCounts }}</td>
-          <td>{{ course.progress }}%</td>
-          <td>
-            <button class="btn btn-success btn-sm" (click)="updateProgress(course.id, course.progress)">+10%</button>
-            <button class="btn btn-danger btn-sm" (click)="deleteCourse(course.id)">Remove</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  
-    <p *ngIf="enrolledCourses.length === 0">No courses enrolled yet.</p>
+  <h2 class="section-title">My Enrolled Courses</h2>
+
+  <!-- Search Bar -->
+  <div class="search-container">
+    <input 
+      type="text" 
+      [(ngModel)]="searchTitle" 
+      (keyup)="searchCourses()" 
+      placeholder="Search courses..." 
+      class="search-input"
+    />
   </div>
-  
+
+  <table class="styled-table" *ngIf="enrolledCourses.length > 0">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Title</th>
+        <th>Level</th>
+        <th>Ratings</th>
+        <th>Reviews</th>
+        <th>Progress</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let course of enrolledCourses; index as i">
+        <td>{{ i + 1 }}</td>
+        <td>{{ course.title }}</td>
+        <td>{{ course.level }}</td>
+        <td>{{ course.numericRatings }}</td>
+        <td>{{ course.reviewCounts }}</td>
+        <td>
+          <div class="progress-container">
+            <div class="progress-bar">
+              <div class="progress-fill" [style.width]="course.progress + '%'"></div>
+            </div>
+            <button class="btn-progress" 
+              [disabled]="loading" 
+              (click)="updateProgress(course.id, 10, course.progress)">
+              +
+            </button>
+            <span class="progress-text">{{ course.progress }}%</span>
+          </div>
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteCourse(course.id)">Unenroll</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p *ngIf="enrolledCourses.length === 0" class="empty-message">
+    No courses enrolled yet.
+  </p>
+</div>

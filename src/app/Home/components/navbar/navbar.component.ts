@@ -15,6 +15,10 @@ export class NavbarComponent implements OnInit {
 
   constructor(private router: Router, private cdRef: ChangeDetectorRef) {}
 
+  isLoggedIn(): boolean {
+    return StorageService.isUserLoggedIn() || StorageService.isAdminLoggedIn();//////////////////////
+  }
+
   ngOnInit(): void {
     this.updateNavbar(); // Check role at startup
 
@@ -38,6 +42,7 @@ export class NavbarComponent implements OnInit {
   }
 
   logout(): void {
+    localStorage.clear();////////////////////////////
     StorageService.logout();
     this.updateNavbar();
     this.router.navigate(['/login']);

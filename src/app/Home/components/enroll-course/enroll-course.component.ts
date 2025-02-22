@@ -60,12 +60,25 @@ export class EnrollCourseComponent {
     }
   }
 
-  updateProgress(courseId: number, currentProgress: number): void {
-    this.enrollService.updateProgress(courseId, currentProgress).subscribe({
+  loading = false;
+
+updateProgress(courseId: number, change: number, currentProgress: number): void {
+    if (this.loading) return; // Prevent duplicate clicks
+    this.loading = true;
+    currentProgress = currentProgress-10;
+    const newProgress = Math.max(0, Math.min(100, currentProgress + change)); 
+
+    this.enrollService.updateProgress(courseId, newProgress).subscribe({
       next: () => {
-        this.loadEnrolledCourses();
+        this.loadEnrolledCourses(); 
+        this.loading = false; 
       },
-      error: (error) => console.error('Error updating progress', error)
+      error: (error) => {
+        console.error('Error updating progress', error);
+        this.loading = false;
+      }
     });
-  }
+}
+
+  
 }

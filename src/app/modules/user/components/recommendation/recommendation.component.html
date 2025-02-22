@@ -1,75 +1,88 @@
 <div class="recommendation-container">
-  <h1>Course Recommendations</h1>
+  <h1 class="text-3xl font-semibold text-gray-800 text-center mb-6">Course Recommendations</h1>
 
-  <form (ngSubmit)="submitPreferences()" class="recommendation-form">
+  <form (ngSubmit)="submitPreferences()" class="recommendation-form space-y-4">
+    <!-- Level Input -->
     <div class="form-group">
-      <label for="level">Level:</label>
-      <input
-        id="level"
-        type="text"
-        [(ngModel)]="preferences.level"
-        name="level"
-        required
-        placeholder="Enter your level (e.g., Beginner, Intermediate, Advanced)"
-        (focus)="showDropdown = true"
-        (blur)="hideDropdownWithDelay()"
-        (input)="filterLevels()"
-      />
-      <ul *ngIf="showDropdown" class="dropdown-list">
-        <li *ngFor="let level of filteredLevels" (click)="selectLevel(level)">
-          {{ level }}
-        </li>
-      </ul>
+      <label for="level" class="form-label">Level:</label>
+      <div class="input-wrapper relative">
+        <input
+          id="level"
+          type="text"
+          [(ngModel)]="preferences.level"
+          autocomplete="off"
+          name="level"
+          required
+          placeholder="Beginner, Intermediate, Advanced"
+          (focus)="showDropdown = true"
+          (blur)="hideDropdownWithDelay()"
+          (input)="filterLevels()"
+          class="input-field"
+        />
+        <ul *ngIf="showDropdown" class="dropdown-list">
+          <li *ngFor="let level of filteredLevels" (click)="selectLevel(level)" class="dropdown-item">
+            {{ level }}
+          </li>
+        </ul>
+      </div>
     </div>
-    
-    
 
+    <!-- Skills Input -->
     <div class="form-group">
-      <label for="skills">Skills (comma-separated):</label>
+      <label for="skills" class="form-label">Skills (comma-separated):</label>
       <input
         id="skills"
         type="text"
         [(ngModel)]="preferences.skills"
         name="skills"
         required
-        placeholder="Enter skills (e.g., Python, Data Science, AI)"
+        placeholder="Python, Data Science, AI"
+        autocomplete="off"
+        class="input-field"
       />
     </div>
 
+    <!-- Submit Button -->
     <button type="submit" class="btn-submit">Get Recommendations</button>
   </form>
 
-  <div *ngIf="recommendations.length > 0" class="recommendations">
-    <h2>Recommended Courses</h2>
-    <table class="recommendation-table">
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Level</th>
-          <th>Final Score</th>
-          <th>Numeric Ratings</th>
-          <th>Review Counts</th>
-          <th>Skills</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let course of recommendations">
-          <td>{{ course.Title }}</td>
-          <td>{{ course.Level }}</td>
-          <td>{{ course.Final_Score | number:'1.2-2' }}</td>
-          <td>{{ course['Numeric Ratings'] }}</td>
-          <td>{{ course['Review counts'] }}</td>
-          <td>{{ course.Skills }}</td>
-          <td>
-            <button class="btn-enroll" (click)="enroll(course.Title)">Enroll</button>
-          </td>
-        </tr>
-      </tbody>
-
-    </table>
+  <!-- Course Recommendations Table -->
+  <div *ngIf="recommendations.length > 0" class="recommendations mt-8">
+    <h2 class="text-2xl font-semibold text-gray-700 mb-4">Recommended Courses</h2>
+    <div class="overflow-x-auto">
+      <table class="recommendation-table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Level</th>
+            <th>Final Score</th>
+            <th>Numeric Ratings</th>
+            <th>Review Counts</th>
+            <th>Skills</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let course of recommendations">
+            <td>{{ course.Title }}</td>
+            <td>{{ course.Level }}</td>
+            <td>{{ course.Final_Score | number:'1.2-2' }}</td>
+            <td>{{ course['Numeric Ratings'] }}</td>
+            <td>{{ course['Review counts'] }}</td>
+            <td>{{ course.Skills }}</td>
+            <td>
+              <div class="flex space-x-2">
+                <button class="btn-enroll" (click)="enroll(course.Title)">Enroll</button>
+                <button class="btn-view" (click)="viewOnCoursera(course.Title)">Visit Coursera</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
+  <!-- Error Message -->
   <div *ngIf="errorMessage" class="error-message">
     {{ errorMessage }}
   </div>
