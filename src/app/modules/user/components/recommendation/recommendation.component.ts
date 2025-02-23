@@ -46,20 +46,27 @@ export class RecommendationComponent implements OnInit {
   }
 
   submitPreferences(): void {
+    this.recommendations = []; // Clear previous recommendations
+    this.errorMessage = ''; // Clear any previous error messages
+  
     const formattedPreferences = {
       level: this.preferences.level,
       skills: this.preferences.skills.split(',').map(skill => skill.trim()), // Convert string to array
     };
-
-    this.userService.getCourseRecommendations(formattedPreferences,StorageService.getUserId()).subscribe({
+  
+    this.userService.getCourseRecommendations(formattedPreferences, StorageService.getUserId()).subscribe({
       next: (data) => {
         this.recommendations = data.sort(
           (a: any, b: any) => b.Final_Score - a.Final_Score
         );
       },
-      error: (err) => (this.errorMessage = `Error: ${err.message}`),
+      error: (err) => {
+        this.errorMessage = `Error: ${err.message}`;
+        this.recommendations = []; // Ensure recommendations are empty in case of error
+      },
     });
   }
+  
   
   enroll(Title: String): void {
     this.enrollService.enrollInCourse(Title, StorageService.getUserId()).subscribe({

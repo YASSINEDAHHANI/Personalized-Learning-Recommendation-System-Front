@@ -18,6 +18,7 @@ import { CompletedCoursesComponent } from "./Home/components/completed-courses/c
 import { AdminDashboardComponent } from "./modules/admin/component/admin-dashboard/admin-dashboard.component";
 import { ProfileComponent } from "./auth/components/profile/profile.component";
 import { FooterComponent } from "./Home/components/footer/footer.component";
+import { RandomRecommendationComponent } from "./Home/components/random-recommendation/random-recommendation.component";
 
 
 @NgModule({
@@ -48,8 +49,7 @@ import { FooterComponent } from "./Home/components/footer/footer.component";
         AdminDashboardComponent,
         ProfileComponent,
         FooterComponent,
-        
-
+        RandomRecommendationComponent
     ],
     providers: [provideHttpClient()],
     //bootstrap: [AppComponent]

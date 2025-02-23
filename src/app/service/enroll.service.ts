@@ -33,5 +33,11 @@ export class EnrollService{
   getCompletedCourses(userId: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/user/completed/${userId}`);
   }
+  ////////////////////////////////////////////////////////////
+  private apiUrl2 = 'http://localhost:8080/api/top-courses/'; // Base API URL
+
+  getRecommendedCourses(userId: number): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl2}${userId}`, {});
+  }
   
 }

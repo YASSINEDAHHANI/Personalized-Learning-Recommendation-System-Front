@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, ViewEncapsulation } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { StorageService } from './auth/services/storage/storage.service';
 import { NavbarComponent } from "./Home/components/navbar/navbar.component";
 import { FooterComponent } from "./Home/components/footer/footer.component";
@@ -17,11 +17,18 @@ export class AppComponent {
     throw new Error('Method not implemented.');
   }
   showSidebar = true;
+  showNavbar = true;
   constructor(public router: Router) {this.router.events.subscribe(() => {
     const currentRoute = this.router.url;
     // Hide sidebar for login and signup routes
     this.showSidebar = !(currentRoute.includes('/login') || currentRoute.includes('/signup'));
-  });}
+  });
+  this.router.events.subscribe(event => {
+    if (event instanceof NavigationEnd) {
+      this.showNavbar = !(event.url === '/login' || event.url === '/signup');
+    }
+  });
+}
   logout(){
     StorageService.logout();
     this.router.navigateByUrl("/login");
@@ -29,4 +36,5 @@ export class AppComponent {
   isActive(route: string): boolean {
     return this.router.url === route;
   }
+
 }

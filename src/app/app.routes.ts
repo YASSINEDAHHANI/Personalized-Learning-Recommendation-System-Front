@@ -11,6 +11,7 @@ import { ProfileComponent } from './auth/components/profile/profile.component';
 import { FooterComponent } from './Home/components/footer/footer.component';
 import { AuthGuard } from './auth/services/auth/auth.guard';
 import { AdminGuard } from './auth/services/auth/admin.guard';
+import { RandomRecommendationComponent } from './Home/components/random-recommendation/random-recommendation.component';
 
 export const routes: Routes = [
     { path: "login", component: LoginComponent },
@@ -20,6 +21,7 @@ export const routes: Routes = [
     { path: "home", component: HomeComponent, canActivate: [AuthGuard] },
     { path: "enrollments", component: EnrollCourseComponent, canActivate: [AuthGuard] },
     { path: "competedcourses", component: CompletedCoursesComponent, canActivate: [AuthGuard] },
+    { path: "randomRecommendation", component: RandomRecommendationComponent, canActivate: [AuthGuard] },
     { path: "profile", component: ProfileComponent, canActivate: [AuthGuard] },
 
     { path: "admin-dashboard", component: AdminDashboardComponent, canActivate: [AdminGuard] },

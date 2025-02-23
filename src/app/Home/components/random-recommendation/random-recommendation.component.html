@@ -1,0 +1,58 @@
+<div class="w-[90%] mx-auto p-8">
+    <h2 class="text-4xl font-bold text-center text-gray-800 mb-10">Recommended Courses</h2>
+  
+    <div *ngFor="let course of courses" class="mb-12">
+      <h3 class="text-3xl font-semibold text-gray-700 mb-6">{{ course.skill }}</h3>
+  
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Beginner Course -->
+        <div 
+          *ngIf="course.beginner" 
+          class="relative group bg-green-100 border-l-8 border-green-600 p-6 rounded-lg shadow-md hover:shadow-lg cursor-pointer transition-transform duration-300 hover:scale-105"
+          (click)="viewOnCoursera(course.beginner.Title)">
+          <h4 class="text-2xl font-bold text-green-700">Beginner</h4>
+          <p class="text-xl font-semibold">{{ course.beginner.Title }}</p>
+          <p class="text-gray-600 text-lg">⭐ {{ course.beginner['Numeric Ratings'] }} ({{ course.beginner['Review counts'] }} reviews)</p>
+          <p class="text-gray-700 text-sm"><strong>Skills:</strong> {{ course.beginner.Skills }}</p>
+  
+          <!-- Hover Text -->
+          <p class="text-green-700 font-semibold text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 mt-2">
+            ➡ Visit Coursera
+          </p>
+        </div>
+  
+        <!-- Intermediate Course -->
+        <div 
+          *ngIf="course.intermediate" 
+          class="relative group bg-blue-100 border-l-8 border-blue-600 p-6 rounded-lg shadow-md hover:shadow-lg cursor-pointer transition-transform duration-300 hover:scale-105"
+          (click)="viewOnCoursera(course.intermediate.Title)">
+          <h4 class="text-2xl font-bold text-blue-700">Intermediate</h4>
+          <p class="text-xl font-semibold">{{ course.intermediate.Title }}</p>
+          <p class="text-gray-600 text-lg">⭐ {{ course.intermediate['Numeric Ratings'] }} ({{ course.intermediate['Review counts'] }} reviews)</p>
+          <p class="text-gray-700 text-sm"><strong>Skills:</strong> {{ course.intermediate.Skills }}</p>
+  
+          <!-- Hover Text -->
+          <p class="text-blue-700 font-semibold text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 mt-2">
+            ➡ Visit Coursera
+          </p>
+        </div>
+  
+        <!-- Advanced Course -->
+        <div 
+          *ngIf="course.advanced" 
+          class="relative group bg-red-100 border-l-8 border-red-600 p-6 rounded-lg shadow-md hover:shadow-lg cursor-pointer transition-transform duration-300 hover:scale-105"
+          (click)="viewOnCoursera(course.advanced.Title)">
+          <h4 class="text-2xl font-bold text-red-700">Advanced</h4>
+          <p class="text-xl font-semibold">{{ course.advanced.Title }}</p>
+          <p class="text-gray-600 text-lg">⭐ {{ course.advanced['Numeric Ratings'] }} ({{ course.advanced['Review counts'] }} reviews)</p>
+          <p class="text-gray-700 text-sm"><strong>Skills:</strong> {{ course.advanced.Skills }}</p>
+  
+          <!-- Hover Text -->
+          <p class="text-red-700 font-semibold text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 mt-2">
+            ➡ Visit Coursera
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  

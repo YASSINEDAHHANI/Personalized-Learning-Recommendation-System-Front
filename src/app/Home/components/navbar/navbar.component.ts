@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit {
   constructor(private router: Router, private cdRef: ChangeDetectorRef) {}
 
   isLoggedIn(): boolean {
-    return StorageService.isUserLoggedIn() || StorageService.isAdminLoggedIn();//////////////////////
+    return StorageService.isUserLoggedIn()!== null || StorageService.isAdminLoggedIn()!== null;//////////////////////
   }
 
   ngOnInit(): void {

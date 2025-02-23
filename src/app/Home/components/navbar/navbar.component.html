@@ -8,7 +8,7 @@
 			  <!-- Start Logo -->
 			  <div class="logo">
 				<a routerLink="/home">
-				  <img src="../../../../assets/img/logo.png" alt="Logo">
+				  <img src="../../../../assets/img/logo.png" alt="Logo" >
 				</a>
 			  </div>
 			  <!-- End Logo -->
@@ -32,13 +32,16 @@
 							<li><a routerLink="/competedcourses"  class="no-underline hover:text-blue-500">Completed courses</a></li>
 						  </ul>
 					</li>
+					<li *ngIf="!isAdminLoggedIn()" routerLinkActive="active">
+						<a routerLink="/randomRecommendation" class="no-underline hover:text-blue-500">Our Recommendations<i class="icofont-rounded-down"></i></a>
+					</li>
 					<li *ngIf="isAdminLoggedIn()" routerLinkActive="active">
 						<a routerLink="/admin-dashboard" class="no-underline hover:text-blue-500">Administrateur<i class="icofont-rounded-down"></i></a>
 					</li>
 					<li routerLinkActive="active">
 						<a routerLink="/profile" class="no-underline hover:text-blue-500">Profile<i class="icofont-rounded-down"></i></a>
 					</li>
-					<li routerLinkActive="active">
+					<li class="logout" routerLinkActive="active">
 						<a (click)="logout()" style="cursor: pointer;">Logout <i class="icofont-logout"></i></a>
 					</li>
 				  </ul>
